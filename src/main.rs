@@ -2,12 +2,12 @@ use axum::serve;
 use tokio::net::TcpListener;
 
 pub mod api;
-pub mod application;
-pub mod infrastructure;
+pub mod services;
+pub mod repo;
 pub mod state;
 
 use crate::api::register_router;
-use crate::infrastructure::db::{init_postgres_pool, load_db_url};
+use crate::repo::db::{init_postgres_pool, load_db_url};
 use crate::state::AppState;
 
 #[tokio::main]
