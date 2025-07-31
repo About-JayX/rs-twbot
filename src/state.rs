@@ -1,13 +1,13 @@
+use sqlx::PgPool;
 use std::sync::Arc;
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct AppState {
-    pub user_service: Arc<String>,
+    pub user_service: Option<Arc<String>>,
+    pub pg_pool: PgPool,
 }
 impl AppState {
-    pub fn new() -> AppState {
-        AppState {
-            user_service:Arc::new(String::from("")),
-        }
+    pub fn new(state: AppState) -> AppState {
+        state
     }
 }
