@@ -2,6 +2,7 @@ use axum::serve;
 use tokio::net::TcpListener;
 
 pub mod api;
+pub mod application;
 pub mod infrastructure;
 pub mod state;
 
