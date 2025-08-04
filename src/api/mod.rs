@@ -1,6 +1,6 @@
 use axum::Router;
 use tower_http::trace::TraceLayer;
-mod response;
+pub mod response;
 pub mod users;
 
 use crate::state::AppState;

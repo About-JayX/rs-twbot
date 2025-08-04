@@ -1,10 +1,16 @@
+extern crate core;
+
 use axum::serve;
+use std::net::SocketAddr;
 use tokio::net::TcpListener;
 
 pub mod api;
-pub mod services;
 pub mod repo;
+pub mod services;
 pub mod state;
+
+pub mod models;
+pub mod utils;
 
 use crate::api::register_router;
 use crate::repo::db::{init_postgres_pool, load_db_url};
@@ -22,6 +28,10 @@ async fn main() -> Result<(), std::io::Error> {
         user_service: None,
     });
     let listener = TcpListener::bind("127.0.0.1:8989").await?;
-    serve(listener, app).await?;
+    serve(
+        listener,
+        app.into_make_service_with_connect_info::<SocketAddr>(),
+    )
+    .await?;
     Ok(())
 }

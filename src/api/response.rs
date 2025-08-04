@@ -34,6 +34,7 @@ impl<T: Serialize> IntoResponse for Response<T> {
         } else {
             StatusCode::BAD_REQUEST
         };
+
         (code, Json(self)).into_response()
     }
 }
